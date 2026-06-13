@@ -6,7 +6,7 @@ from datetime import timedelta
 
 # Importa tus modelos y configuración desde su ubicación real
 from models.usuario import Usuario, UserCreate, UserPublic, UserUpdate, PasswordUpdate
-from repositores.insumo_db import crear_usuario, obtener_todos_usuario, eliminar_usuario, modificar_usuario, obtener_usuario_dni #FALTA HACER EN REPOSITORES
+from repositories.insumo_db import crear_usuario, obtener_todos_usuario, eliminar_usuario, modificar_usuario, obtener_usuario_dni #FALTA HACER EN REPOSITORES
 from database.db import get_db
 
 #FALTA HACER EL SERVICE

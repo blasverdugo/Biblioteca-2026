@@ -18,3 +18,17 @@ class EstadoInsumo(SQLModel, table=True):
 
     def nombre_completo(self) -> str:
         return f"{self.nombre}"
+    
+class EstadoInsumoCreate(SQLModel):
+    nombre: str = Field(max_length=20)
+    observacion: str = Field(max_length=50)
+
+class EstadoInsumoRead(SQLModel):
+    id: int
+    nombre: str
+    observacion: str
+
+class EstadoInsumoUpdate(SQLModel):
+    nombre: Optional[str] = Field(default=None, max_length=20)
+    observacion: Optional[str] = Field(default=None, max_length=50)
+        

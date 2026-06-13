@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes import insumos
+from routes import estado_insumos, insumos
 
 from sqlmodel import SQLModel, Session
 
@@ -15,7 +15,9 @@ from models.prestamo import Prestamo, EstadoPrestamo
 app = FastAPI() 
 #instancia de la clase de FastApi (esto nos va a dar todas las funcionalidades)
 
+
 app.include_router(insumos.router)
+app.include_router(estado_insumos.router)
 
 @app.get("/")
 async def root():
