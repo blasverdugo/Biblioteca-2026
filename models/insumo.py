@@ -3,16 +3,8 @@ from sqlmodel import Field, SQLModel, Relationship
 
 if TYPE_CHECKING:
     from .prestamo import Prestamo
+    from .estado_insumo import EstadoInsumo
 
-
-class EstadoInsumo(SQLModel, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-    nombre: str = Field(max_length=20)
-    observacion: str = Field(max_length=50)
-
-    insumos: list["Insumo"] = Relationship(
-        back_populates="estado"
-    )
 
 
 class Insumo(SQLModel, table=True):

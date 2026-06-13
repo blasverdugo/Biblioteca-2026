@@ -7,7 +7,8 @@ from database.database import engine
 
 from models.carrera import Carrera
 from models.destinatario import Destinatario
-from models.insumo import Insumo, EstadoInsumo
+from models.insumo import Insumo
+from models.estado_insumo import EstadoInsumo
 from models.usuario import Usuario, Rol
 from models.prestamo import Prestamo, EstadoPrestamo
 
