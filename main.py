@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes import estado_insumos, insumos
+from routes import destinatario, estado_insumos, insumos, carrera,destinatario
 
 from sqlmodel import SQLModel, Session
 
@@ -11,6 +11,8 @@ from models.insumo import Insumo
 from models.estado_insumo import EstadoInsumo
 from models.usuario import Usuario, Rol
 from models.prestamo import Prestamo, EstadoPrestamo
+from models.carrera import Carrera, CarreraGet, CarreraCreate, CarreraUpdate
+from repositories.destinatario_db import crear_destinatario, obtener_todos_destinatarios, eliminar_destinatario, modificar_destinatario, obtener_destinatario_id
 
 app = FastAPI() 
 #instancia de la clase de FastApi (esto nos va a dar todas las funcionalidades)
@@ -18,6 +20,9 @@ app = FastAPI()
 
 app.include_router(insumos.router)
 app.include_router(estado_insumos.router)
+app.include_router(destinatario.router)
+app.include_router(carrera.router)
+
 
 @app.get("/")
 async def root():

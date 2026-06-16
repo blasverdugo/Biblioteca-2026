@@ -23,7 +23,7 @@ class EstadoInsumoCreate(SQLModel):
     nombre: str = Field(max_length=20)
     observacion: str = Field(max_length=50)
 
-class EstadoInsumoRead(SQLModel):
+class EstadoInsumoGet(SQLModel):
     id: int
     nombre: str
     observacion: str
