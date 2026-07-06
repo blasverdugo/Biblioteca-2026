@@ -25,4 +25,3 @@ class CarreraGet(SQLModel):
 class CarreraUpdate(SQLModel):
     id: Optional[int] = Field(default=None, primary_key=True)
     nombre: Optional[str] = Field(default=None, max_length=50)
-    

@@ -47,6 +47,3 @@ class DestinatarioUpdate(SQLModel):
     telefono: Optional[str] = Field(default=None, max_length=15)
     correo: Optional[str] = Field(default=None, max_length=20)
     id_carrera: Optional[int] = Field(default=None, foreign_key="carrera.id")
-
-
-

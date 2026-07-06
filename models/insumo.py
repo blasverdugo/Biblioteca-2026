@@ -25,3 +25,12 @@ class Insumo(SQLModel, table=True):
 
     def nombre_completo(self) -> str:
         return f"{self.codigo} {self.nombre}"
+
+class InsumoUpdate(SQLModel): #---> Sirve para actualizar parcialmente un insumo, sin enviar tdos los campos
+    id: int | None = None 
+    codigo: str  | None = None
+    nombre: str | None = None
+    ubicacion: str  | None = None
+    id_estado: int | None = None
+
+

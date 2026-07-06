@@ -19,10 +19,10 @@ class Usuario(SQLModel, table=True):
     email: str = Field(unique=True, index=True)
     nombre: str
     apellido: str
-   # role: str  | None = Field(default="basic")
+# role: str  | None = Field(default="basic")
     password_hashed: str  
     disabled: bool = Field(default=False)
-    id_rol: int = Field(foreign_key="rol.id")
+    id_rol: int  | None = Field(foreign_key="rol.id")
     rol: Optional["Rol"] = Relationship(back_populates="usuarios")
     prestamos: List["Prestamo"] = Relationship(back_populates="usuario")
 
@@ -30,10 +30,11 @@ class Usuario(SQLModel, table=True):
         return f"{self.nombre} {self.apellido}"
     
 class UserCreate(SQLModel):
+    username: str
     email: str
     nombre: str
     apellido:str
-    id_rol: int
+    #id_rol: int
     password: str
 
 class UserPublic(SQLModel):

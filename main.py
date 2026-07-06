@@ -1,5 +1,6 @@
-from fastapi import FastAPI
-from routes import destinatario, estado_insumos, insumos, carrera,destinatario
+from fastapi import APIRouter, FastAPI
+from fastapi.responses import RedirectResponse
+from routes import insumos, usuario, prestamo, carrera, estado_insumos , destinatario
 
 from sqlmodel import SQLModel, Session
 
@@ -11,23 +12,25 @@ from models.insumo import Insumo
 from models.estado_insumo import EstadoInsumo
 from models.usuario import Usuario, Rol
 from models.prestamo import Prestamo, EstadoPrestamo
-from models.carrera import Carrera, CarreraGet, CarreraCreate, CarreraUpdate
-from repositories.destinatario_db import crear_destinatario, obtener_todos_destinatarios, eliminar_destinatario, modificar_destinatario, obtener_destinatario_id
 
 app = FastAPI() 
 #instancia de la clase de FastApi (esto nos va a dar todas las funcionalidades)
 
-
 app.include_router(insumos.router)
+app.include_router(usuario.router)
+app.include_router(prestamo.router)
+app.include_router(carrera.router)
 app.include_router(estado_insumos.router)
 app.include_router(destinatario.router)
-app.include_router(carrera.router)
+
+
+
+
 
 
 @app.get("/")
 async def root():
-    return{"message": "Estamos con Argentina"}
-
+    return RedirectResponse(url="/docs")  
 
 def crear_bd():
     SQLModel.metadata.create_all(engine)
@@ -59,7 +62,7 @@ def cargar_datos_prueba():
         session.commit()
         session.refresh(carrera)
 
-       
+    
         destinatario = Destinatario(
             nombre="Juan",
             apellido="López",
@@ -115,6 +118,5 @@ def cargar_datos_prueba():
         print("Todos los datos de prueba cargados correctamente")
 
 
-if __name__ == "__main__":
-    crear_bd()
+crear_bd()
     #cargar_datos_prueba()
