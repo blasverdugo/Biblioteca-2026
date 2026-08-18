@@ -32,5 +32,3 @@ class InsumoUpdate(SQLModel): #---> Sirve para actualizar parcialmente un insumo
     nombre: str | None = None
     ubicacion: str  | None = None
     id_estado: int | None = None
-
-

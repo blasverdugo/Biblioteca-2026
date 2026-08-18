@@ -7,7 +7,8 @@ from repositories.prestamo_db import obtener_todos_prestamos, crear_prestamo, el
 from services.user_services import get_current_user 
 
 
-router = APIRouter( prefix="/prestamo", tags=["Prestamos"])
+router = APIRouter(prefix="/prestamos", tags=["Prestamos"])
+
 
 #TODOS LOS PRESTAMOS
 @router.get("/")
@@ -15,7 +16,9 @@ async def obtenerPrestamos(current_user: Annotated[Usuario, Depends(get_current_
     prestamos = obtener_todos_prestamos()
     #for prestamo in prestamos:
         #print(prestamo) flag para ver que onda
-    return(prestamos)
+    if prestamos:
+        return prestamos
+    return {"mensaje": "No se encontraron prestamos"}
 
 #Agregar un prestamo
 @router.post("/")
@@ -36,19 +39,25 @@ async def eliminarPrestamo(id: int, current_user: Annotated[Usuario, Depends(get
 @router.get("/{id}")
 async def obtenerPrestamoId(id:int, current_user: Annotated[Usuario, Depends(get_current_user)]):
     prestamo = obtener_prestamo_id(id)
-    return obtener_todos_prestamos(prestamo)
+    if prestamo:
+        return prestamo
+    return {"mensaje": "prestamo NO encontrado"}
 
 #Obtener prestamos por nombbre de destinatario
 @router.get("/destinatario/{nom_destinatario}")
 async def obtenerPrestamosDestinatario(nom_destinatario: str, current_user: Annotated[Usuario, Depends(get_current_user)]):
     prestamo = obtener_prestamo_destinatario(nom_destinatario)
-    return prestamo
+    if prestamo:
+        return prestamo
+    return {"mensaje": "prestamo NO encontrado"}
 
 #obtener prestamos morosos
 @router.get("/morosos/")
 async def obtenerPrestamosMorosos(current_user: Annotated[Usuario, Depends(get_current_user)]):
     prestamos = obtener_todos_prestamos_morosos()
-    return prestamos
+    if prestamos:
+        return prestamos
+    return {"mensaje": "No se encontraron prestamos morosos"}
 
 @router.put("/{id}")
 async def modificarPrestamo(id: int, prestamo: Prestamo, current_user: Annotated[Usuario, Depends(get_current_user)]):

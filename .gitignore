@@ -1,20 +1,4 @@
-# Python
+./.env
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Entorno virtual
-venv/
-env/
-.venv/
-
-# Base de datos SQLite
-*.db
-
-# Variables de entorno
-.env
-
-# IDEs
-.vscode/
-.idea/
+.env/

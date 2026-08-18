@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import RedirectResponse
-from routes import insumos, usuario, prestamo, carrera, estado_insumos , destinatario
+from routes import insumos, usuario, prestamo, carrera, estado_insumo , destinatario
 
 from sqlmodel import SQLModel, Session
 
@@ -20,7 +20,7 @@ app.include_router(insumos.router)
 app.include_router(usuario.router)
 app.include_router(prestamo.router)
 app.include_router(carrera.router)
-app.include_router(estado_insumos.router)
+app.include_router(estado_insumo.router)
 app.include_router(destinatario.router)
 
 
@@ -33,11 +33,12 @@ async def root():
     return RedirectResponse(url="/docs")  
 
 def crear_bd():
+    #cargar_datos_prueba()
     SQLModel.metadata.create_all(engine)
 
 def cargar_datos_prueba():
     with Session(engine) as session:
-
+    
         
         rol = Rol(nombre="Administrador")
         session.add(rol)
@@ -46,8 +47,11 @@ def cargar_datos_prueba():
 
         
         usuario = Usuario(
+            username="paula123",
+            email="paula@gmail",
             nombre="Paula",
             apellido="García",
+            password_hashed="hashed_password",
             dni="12345678",
             clave="1234",
             id_rol=rol.id
@@ -119,4 +123,3 @@ def cargar_datos_prueba():
 
 
 crear_bd()
-    #cargar_datos_prueba()

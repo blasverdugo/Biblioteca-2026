@@ -17,3 +17,6 @@ def get_db() -> Generator[Session, None, None]:
     """Dependencia para obtener la sesion de la base de datos."""
     with Session(engine) as session:
         yield session
+
+
+

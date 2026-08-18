@@ -41,5 +41,3 @@ def modificar_insumo(insumo_update: InsumoUpdate, insumo_db: Insumo):
         session.refresh(insumo_db) 
 
         return insumo_db 
-
-
